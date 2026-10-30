@@ -1,1 +1,1 @@
-([https://www.youtube.com/watch?v=VIDEO_ID](https://www.youtube.com/watch/Ac4np9qfKIk)
+[![Watch the video](https://youtube.com)](https://www.youtube.com/shorts/Ac4np9qfKIk)
