@@ -117,6 +117,7 @@ void main(void)
     Timer1_Init();
     ADC_Init();
     __delay_ms(50); 
+    LED = 1;
     
     uint16_t Current_OverflowCounter_Val = 0;
     while(1)
@@ -127,12 +128,12 @@ void main(void)
         {
             RELAY  = 1;
             HOOTER = 0;
-            uint16_t Count_Constant = ADC_Read() + ADREAD_TO_COUNT_CONSTANT;
+            uint16_t Count_Constant = (1023 - ADC_Read()) + ADREAD_TO_COUNT_CONSTANT;
 
             GIE = 0;
             Current_OverflowCounter_Val = Overflow_Counter;
             GIE = 1;
-            LED = (Current_OverflowCounter_Val >> 1) & 0x0001;
+            LED = Current_OverflowCounter_Val & 0x0001;
             __delay_ms(10); 
 
             Button_Status_Update();
@@ -163,7 +164,7 @@ void main(void)
             Overflow_Counter = 0x0000;
             GIE = 1;
             RELAY  = 0;
-            LED    = 0;
+            LED    = 1;
             HOOTER = 0;
         }
     }
